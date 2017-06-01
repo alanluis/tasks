@@ -7,7 +7,7 @@ use Carbon\Carbon;
 
 class Task extends Model
 {
-	protected $fillable = [
+    protected $fillable = [
         'name',
         'description',
         'initial_date',
@@ -16,7 +16,7 @@ class Task extends Model
         'active'
     ];
 
-	protected $dates = [
+    protected $dates = [
         'created_at',
         'updated_at',
         'deleted_at',
@@ -25,7 +25,7 @@ class Task extends Model
     ];
 
     protected $rules = [
-    	'name' => 'required|max:255',
+        'name' => 'required|max:255',
         'description' => 'required|max:600',
         'initial_date' => 'required|date_format:d/m/Y',
         'final_date' => 'required_if:status_id,4',
@@ -63,7 +63,7 @@ class Task extends Model
         return $this->belongsTo('App\Status');
     }
 
-	public function setInitialDateAttribute($value)
+    public function setInitialDateAttribute($value)
     {
         $this->attributes['initial_date'] = Carbon::createFromFormat('d/m/Y', $value)->toDateString();
     }
